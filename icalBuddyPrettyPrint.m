@@ -169,7 +169,7 @@ NSString* dateStr(NSDate *date, DatePrintOption printOption)
 
                     NSString *weekDiffStr = nil;
                     if (weekDiff < -1)
-                        weekDiffStr = [NSString stringWithFormat:localizedStr(kL10nKeyXWeeksAgo), abs(weekDiff)];
+                        weekDiffStr = [NSString stringWithFormat:localizedStr(kL10nKeyXWeeksAgo), labs(weekDiff)];
                     else if (weekDiff == -1)
                         weekDiffStr = localizedStr(kL10nKeyLastWeek);
                     else if (weekDiff == 0)
@@ -194,7 +194,7 @@ NSString* dateStr(NSDate *date, DatePrintOption printOption)
 
                     NSString *dayDiffStr = nil;
                     if (dayDiff < -1)
-                        dayDiffStr = [NSString stringWithFormat:localizedStr(kL10nKeyXDaysAgo), abs(dayDiff)];
+                        dayDiffStr = [NSString stringWithFormat:localizedStr(kL10nKeyXDaysAgo), labs(dayDiff)];
                     else if (dayDiff == -1)
                         dayDiffStr = localizedStr(kL10nKeyYesterday);
                     else if (dayDiff == 0)
@@ -830,7 +830,7 @@ NSString *localizedPriority(CalPriority priority)
             return localizedStr(kL10nKeyPriorityNone);
             break;
     }
-    return [NSString stringWithFormat:@"%d", priority];
+    return [NSString stringWithFormat:@"%lu", (unsigned long) priority];
 }
 
 NSString *localizedPriorityTitle(CalPriority priority)

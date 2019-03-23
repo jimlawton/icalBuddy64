@@ -148,8 +148,8 @@ NSComparisonResult versionNumberCompare(NSString *first, NSString *second)
         {
             if (error != NULL)
                 *error = NS_ERROR(0, ([NSString
-                            stringWithFormat:@"HTTP connection failed. Status code %d: \"%@\"",
-                            statusCode,
+                            stringWithFormat:@"HTTP connection failed. Status code %ld: \"%@\"",
+                            (long) statusCode,
                             [NSHTTPURLResponse localizedStringForStatusCode:statusCode]]));
             return nil;
         }

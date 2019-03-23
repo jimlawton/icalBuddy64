@@ -131,11 +131,11 @@ void handleArgument(NSString *shortName, NSString *longName, id value,
         if ([value respondsToSelector:@selector(integerValue)])
         {
             if ([shortName isEqualToString:@"li"] || [longName isEqualToString:@"limitItems"])
-                prettyPrintOptions->maxNumPrintedItems = abs([value integerValue]);
+                prettyPrintOptions->maxNumPrintedItems = labs([value integerValue]);
             else if ([shortName isEqualToString:@"na"] || [longName isEqualToString:@"maxNumAttendees"])
-                opts->maxNumPrintedAttendees = abs([value integerValue]);
+                opts->maxNumPrintedAttendees = labs([value integerValue]);
             else if ([shortName isEqualToString:@"nnc"] || [longName isEqualToString:@"maxNumNoteChars"])
-                opts->maxNumNoteCharacters = abs([value integerValue]);
+                opts->maxNumNoteCharacters = labs([value integerValue]);
         }
     }
 }

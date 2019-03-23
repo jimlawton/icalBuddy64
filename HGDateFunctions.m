@@ -171,13 +171,13 @@ NSInteger getWeekDiff(NSDate *date1, NSDate *date2)
     // of the last days in a year is often week #1 of the next
     // year) -- if so, they are directly comparable
     if ((year1 == year2) ||
-        (abs(year1-year2)==1 && earlierDateWeek==1))
-        return abs(week2-week1);
+        (labs(year1-year2)==1 && earlierDateWeek==1))
+        return labs(week2-week1);
 
     // if there is more than one year between the dates, get the
     // total number of weeks in the years between
     NSInteger numWeeksInYearsBetween = 0;
-    if (abs(year1-year2) > 1)
+    if (labs(year1-year2) > 1)
     {
         NSInteger i;
         for (i = earlierDateYear+1; i < laterDateYear; i++)
@@ -254,8 +254,8 @@ BOOL naturalLanguageDateSpecifiesTime(NSString *input, NSDate *resultDate)
     // towards falsely assuming that no time has been specified than the other
     // way.
     NSUInteger occurrencesOf12InDate = 0;
-    occurrencesOf12InDate = countOccurrences([NSString stringWithFormat:@"%i-%i-%i",
-                                              [resultComps year], [resultComps month], [resultComps day]],
+    occurrencesOf12InDate = countOccurrences([NSString stringWithFormat:@"%li-%li-%li",
+                                              (long) [resultComps year], (long) [resultComps month], (long) [resultComps day]],
                                               @"12", NSLiteralSearch);
     if (countOccurrences(input, @"12", NSLiteralSearch) > occurrencesOf12InDate)
         return YES;
