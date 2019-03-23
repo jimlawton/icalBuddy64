@@ -53,7 +53,7 @@ struct
     int major;
     int minor;
     int build;
-} version = {1,8,10};
+} version = {1,9,0};
 
 NSString* versionNumberStr()
 {
@@ -252,6 +252,7 @@ int main(int argc, char *argv[])
                @"\n");
         Printf(@"Version %@\n", versionNumberStr());
         Printf(@"Copyright 2008-2012 Ali Rantakari, http://hasseg.org/icalBuddy\n");
+        Printf(@"Updated to 64-bit by David Kaluta (2019), https://davidkaluta.github.io\n");
         Printf(@"\n");
     }
 
