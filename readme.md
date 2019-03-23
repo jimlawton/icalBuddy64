@@ -1,6 +1,6 @@
 # icalBuddy
 
-This is a command-line utility that can be used to get lists of events and tasks/to-do's from the OS X calendar database (the same one iCal uses).
+This is a command-line utility that can be used to get lists of events and tasks/to-do's from the macOS calendar database (the same one Calendar.app uses).
 
 Read more at <http://hasseg.org/icalBuddy>.
 
