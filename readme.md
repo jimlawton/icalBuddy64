@@ -4,6 +4,9 @@ This is a command-line utility that can be used to get lists of events and tasks
 
 Read more at <http://hasseg.org/icalBuddy>.
 
+Compiles and runs successfully on a MacBookPro15,1 running macOS 10.14.3
+Mojave.
+
 
 ## The MIT License
 
