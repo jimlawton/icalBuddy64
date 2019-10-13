@@ -626,6 +626,7 @@ NSMutableAttributedString* getEventPropStr(NSString *propName, CalEvent *event, 
     if ([propName isEqualToString:kPropName_title]
         && prettyPrintOptions.useCalendarColorsForTitles
         && ![[[elements.value attributesAtIndex:0 effectiveRange:NULL] allKeys] containsObject:NSForegroundColorAttributeName]
+	&& [[event calendar] color] != nil
         )
         [elements.value
             addAttribute:NSForegroundColorAttributeName
@@ -1112,15 +1113,14 @@ void printAllCalendars(AppOptions *opts)
     {
         ADD_TO_OUTPUT_BUFFER(ATTR_STR(@"• "));
         NSMutableAttributedString *calendarName = M_ATTR_STR([cal title]);
-        [calendarName addAttribute:NSForegroundColorAttributeName value:[cal color] range:NSMakeRange(0, [calendarName length])];
+	if([cal color] != nil)
+	        [calendarName addAttribute:NSForegroundColorAttributeName value:[cal color] range:NSMakeRange(0, [calendarName length])];
         ADD_TO_OUTPUT_BUFFER(calendarName);
         ADD_TO_OUTPUT_BUFFER(ATTR_STR(@"\n"));
         ADD_TO_OUTPUT_BUFFER(ATTR_STR(([NSString stringWithFormat:@"  type: %@\n", [cal type]])));
         ADD_TO_OUTPUT_BUFFER(ATTR_STR(([NSString stringWithFormat:@"  UID: %@\n", [cal uid]])));
     }
 }
-
-
 
 void flushOutputBuffer(NSMutableAttributedString *buffer, AppOptions *opts, NSDictionary *formattedKeywords)
 {
