@@ -1060,6 +1060,7 @@ void printItemSections(NSArray *sections, CalItemPrintOption printOptions)
             && prettyPrintOptions.useCalendarColorsForTitles
             && ![[[thisOutput attributesAtIndex:0 effectiveRange:NULL] allKeys] containsObject:NSForegroundColorAttributeName]
             && section.items != nil && [section.items count] > 0
+            && [[((CalCalendarItem *)[section.items objectAtIndex:0]) calendar] color] != nil
             )
         {
             [thisOutput

@@ -81,7 +81,7 @@ testRunner: $(SOURCE_FILES)
 	@echo
 	@echo ---- Compiling test runner:
 	@echo ======================================
-	$(COMPILER) $(ARG_DEBUG) -O3 -Wall -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5  -arch ppc -arch x86_64 -DUSE_MOCKED_CALENDARSTORE -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ testRunner.m $(SOURCE_FILES) calendarStoreMock/*.m tests/unit/*.m
+	$(COMPILER) $(ARG_DEBUG) -O3 -Wall -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5 -arch x86_64 -DUSE_MOCKED_CALENDARSTORE -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ testRunner.m $(SOURCE_FILES) calendarStoreMock/*.m tests/unit/*.m
 
 
 
