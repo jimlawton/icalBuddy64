@@ -6,7 +6,6 @@ Read more at <http://hasseg.org/icalBuddy>.
 
 Compiles and runs successfully on macOS 10.15.0 Catalina
 
-
 ## The MIT License
 
 Copyright (c) Ali Rantakari
