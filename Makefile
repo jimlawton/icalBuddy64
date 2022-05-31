@@ -3,6 +3,8 @@
 # Created by Ali Rantakari on 18 June, 2008
 #
 
+ARCH ?= arm64 
+
 SHELL=/bin/bash
 
 CURRDATE=$(shell date +"%Y-%m-%d")
@@ -22,7 +24,7 @@ DEPLOYMENT_INCLUDES_DIR="./deployment-files"
 
 COMPILER_GCC=gcc
 COMPILER_CLANG=clang
-COMPILER=$(COMPILER_CLANG)
+COMPILER=$(COMPILER_GCC)
 
 CC_WARN_OPTS=-Wall -Wextra -Wno-unused-parameter -Werror
 
@@ -42,7 +44,7 @@ icalBuddy: $(SOURCE_FILES) icalBuddy.m
 	@echo
 	@echo ---- Compiling main app:
 	@echo ======================================
-	$(COMPILER) $(ARG_DEBUG) -O3 $(CC_WARN_OPTS) -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5  -arch x86_64 -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ icalBuddy.m $(SOURCE_FILES)
+	$(COMPILER) $(ARG_DEBUG) -O3 $(CC_WARN_OPTS) -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5  -arch $(ARCH) -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ icalBuddy.m $(SOURCE_FILES)
 
 
 
@@ -54,7 +56,7 @@ testIcalBuddy: $(SOURCE_FILES) icalBuddy.m calendarStoreMock/*.m
 	@echo
 	@echo ---- Compiling TEST version of main app:
 	@echo ======================================
-	$(COMPILER) $(ARG_DEBUG) -O3 -Wall -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5  -arch x86_64 -DUSE_MOCKED_CALENDARSTORE -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ icalBuddy.m calendarStoreMock/*.m $(SOURCE_FILES)
+	$(COMPILER) $(ARG_DEBUG) -O3 -Wall -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5  -arch $(ARCH) -DUSE_MOCKED_CALENDARSTORE -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ icalBuddy.m calendarStoreMock/*.m $(SOURCE_FILES)
 
 
 
@@ -81,7 +83,7 @@ testRunner: $(SOURCE_FILES)
 	@echo
 	@echo ---- Compiling test runner:
 	@echo ======================================
-	$(COMPILER) $(ARG_DEBUG) -O3 -Wall -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5 -arch x86_64 -DUSE_MOCKED_CALENDARSTORE -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ testRunner.m $(SOURCE_FILES) calendarStoreMock/*.m tests/unit/*.m
+	$(COMPILER) $(ARG_DEBUG) -O3 -Wall -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5 -arch $(ARCH) -DUSE_MOCKED_CALENDARSTORE -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ testRunner.m $(SOURCE_FILES) calendarStoreMock/*.m tests/unit/*.m
 
 
 
