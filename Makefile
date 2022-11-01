@@ -24,9 +24,11 @@ DEPLOYMENT_INCLUDES_DIR="./deployment-files"
 
 COMPILER_GCC=gcc
 COMPILER_CLANG=clang
-COMPILER=$(COMPILER_GCC)
+COMPILER=$(COMPILER_CLANG)
 
 CC_WARN_OPTS=-Wall -Wextra -Wno-unused-parameter -Werror
+
+CFLAGS=-isysroot $(shell xcrun --sdk macosx --show-sdk-path) -I/usr/include -L/usr/lib
 
 SOURCE_FILES=icalBuddy[ABCDEFGHIJKLMNOPQRSTUVWXYZ]*.m ANSIEscapeHelper.m HG*.m IcalBuddy*.m *+HGAdditions.m
 
@@ -44,7 +46,7 @@ icalBuddy: $(SOURCE_FILES) icalBuddy.m
 	@echo
 	@echo ---- Compiling main app:
 	@echo ======================================
-	$(COMPILER) $(ARG_DEBUG) -O3 $(CC_WARN_OPTS) -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5  -arch $(ARCH) -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ icalBuddy.m $(SOURCE_FILES)
+	$(COMPILER) $(ARG_DEBUG) -O3 $(CC_WARN_OPTS) $(CFLAGS) -std=c99 -force_cpusubtype_ALL -mmacosx-version-min=10.5  -arch $(ARCH) -framework Cocoa -framework CalendarStore -framework AppKit -framework AddressBook -o $@ icalBuddy.m $(SOURCE_FILES)
 
 
 
